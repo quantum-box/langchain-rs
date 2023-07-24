@@ -1,0 +1,13 @@
+[package]
+name = "langchain"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tokio = { version = "1", features = ["macros", "rt", "rt-multi-thread"], default-features = false }
+anyhow = "1.0.72"
+async-trait = "0.1.72"
+headless_chrome = "1.0.5"
+slack-morphism = { version = "1.14.0", features = ["axum"] }
