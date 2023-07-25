@@ -40,3 +40,9 @@ pub struct EmptyMetadata;
 
 #[derive(Debug, Clone)]
 pub struct VectorMetadata(pub Vec<f32>);
+
+impl From<Vec<f32>> for VectorMetadata {
+    fn from(v: Vec<f32>) -> Self {
+        Self(v)
+    }
+}
