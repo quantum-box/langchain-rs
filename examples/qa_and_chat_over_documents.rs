@@ -22,5 +22,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
     let question = "What are the approaches to Task Decomposition?";
     let docs = store.similarity_search(question, None).await?;
     println!("docs: {}", docs.len());
+
+    // skip it for now
+    // https://python.langchain.com/docs/use_cases/question_answering/#222-advanced-retrieval
     Ok(())
 }

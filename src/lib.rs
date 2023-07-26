@@ -1,4 +1,5 @@
 pub mod chains;
+pub mod chat_models;
 pub mod docstores;
 pub mod document_loaders;
 pub mod embeddings;

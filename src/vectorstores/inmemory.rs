@@ -4,6 +4,7 @@ use std::collections::HashMap;
 use std::sync::Arc;
 use uuid::Uuid;
 
+#[derive(Clone)]
 pub struct InMemoryVectorStore<E>
 where
     E: Embeddings + Clone + Send + Sync + 'static,
@@ -77,6 +78,10 @@ where
 
         Ok(sorted_docs)
     }
+
+    pub fn as_retriever(&self) -> VectorStoreRetriever<E, Self> {
+        VectorStoreRetriever::new(self.clone())
+    }
 }
 
 #[async_trait::async_trait]
@@ -121,7 +126,7 @@ where
         Ok(docs.into_iter().take(k).collect())
     }
 
-    fn delete_document(&mut self, ids: Vec<String>) -> anyhow::Result<bool> {
+    async fn delete_document(&mut self, ids: Vec<String>) -> anyhow::Result<bool> {
         let mut deleted = false;
         for id in ids {
             if let Ok(id) = Uuid::parse_str(&id) {
